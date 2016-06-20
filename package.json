@@ -1,0 +1,26 @@
+{
+  "name": "cards",
+  "version": "1.0.0",
+  "description": "get random cards",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HausenZheng/cards.git"
+  },
+  "keywords": [
+    "random",
+    "cards"
+  ],
+  "author": "HausenZheng <hausenism@hotmail.com> (http://weibo.com/hausenism)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/HausenZheng/cards/issues"
+  },
+  "homepage": "https://github.com/HausenZheng/cards#readme",
+  "dependencies": {
+    "unique-random-array": "1.0.0"
+  }
+}

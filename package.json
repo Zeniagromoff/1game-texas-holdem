@@ -1,25 +1,24 @@
 {
-  "name": "cards",
+  "name": "1game-texas-holdem",
   "version": "1.0.0",
-  "description": "get random cards",
+  "description": "1game-TexasHoldEm",
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/HausenZheng/cards.git"
+    "url": "git+https://github.com/HausenZheng/1game-TexasHoldEm.git"
   },
   "keywords": [
-    "random",
-    "cards"
+    "1game-TexasHoldEm"
   ],
   "author": "HausenZheng <hausenism@hotmail.com> (http://weibo.com/hausenism)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/HausenZheng/cards/issues"
+    "url": "https://github.com/HausenZheng/1game-TexasHoldEm/issues"
   },
-  "homepage": "https://github.com/HausenZheng/cards#readme",
+  "homepage": "https://github.com/HausenZheng/1game-TexasHoldEm#readme",
   "dependencies": {
     "unique-random-array": "1.0.0"
   }

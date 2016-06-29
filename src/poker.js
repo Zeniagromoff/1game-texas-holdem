@@ -5,8 +5,8 @@ let Card = function (suit, name) {
     this.name = name;
 };
 
-let suit = ['Heart', 'Spade', 'Club', 'Diamond'];
-let name = ['Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Jack', 'Queen', 'King', 'Ace'];
+let suit = ['Spades', 'Hearts', 'Diamonds', 'Clubs'];
+let name = ['Ace', 'King', 'Queen', 'Jack', 'Ten', 'Nine', 'Eight', 'Seven', 'Six', 'Five', 'Four', 'Three', 'Two'];
 
 let deck = [];
 for (let i = 0; i < suit.length; ++i) {

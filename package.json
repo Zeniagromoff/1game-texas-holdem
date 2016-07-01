@@ -29,6 +29,7 @@
   "devDependencies": {
     "chai": "3.5.0",
     "commitizen": "2.8.2",
+    "condition-snap": "0.0.2",
     "cz-conventional-changelog": "1.1.6",
     "mocha": "2.5.3",
     "semantic-release": "^4.3.5"
@@ -37,5 +38,8 @@
     "commitizen": {
       "path": "node_modules/cz-conventional-changelog"
     }
+  },
+  "release": {
+    "verifyConditions": "condition-snap"
   }
 }

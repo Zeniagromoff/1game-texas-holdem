@@ -1,9 +1,6 @@
 'use strict'
 
-let Card = function (suit, name) {
-    this.suit = suit;
-    this.name = name;
-};
+let Card = require('./card');
 
 let suit = ['Spades', 'Hearts', 'Diamonds', 'Clubs'];
 let name = ['Ace', 'King', 'Queen', 'Jack', 'Ten', 'Nine', 'Eight', 'Seven', 'Six', 'Five', 'Four', 'Three', 'Two'];

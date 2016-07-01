@@ -34,7 +34,7 @@ describe('poker', function () {
             })
         })
 
-        it('should return an array of random items with Deck size' + lib.all.length, function () {
+        it('should return an array of random items with Deck size: ' + lib.all.length, function () {
             var items = lib.random(Number.MAX_SAFE_INTEGER);
             expect(items).to.have.length(lib.all.length);
         })

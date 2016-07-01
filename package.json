@@ -1,6 +1,5 @@
 {
   "name": "1game-texas-holdem",
-  "version": "0.0.0-semantically-released",
   "description": "1game-TexasHoldEm",
   "main": "src/index.js",
   "scripts": {
@@ -11,17 +10,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/HausenZheng/1game-TexasHoldEm.git"
+    "url": "https://github.com/hausenism/1game-TexasHoldEm.git"
   },
   "keywords": [
     "1game-TexasHoldEm"
   ],
-  "author": "HausenZheng <hausenism@hotmail.com> (http://weibo.com/hausenism)",
+  "author": "hausenism <hausenism@hotmail.com> (http://weibo.com/hausenism)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/HausenZheng/1game-TexasHoldEm/issues"
+    "url": "https://github.com/hausenism/1game-TexasHoldEm/issues"
   },
-  "homepage": "https://github.com/HausenZheng/1game-TexasHoldEm#readme",
+  "homepage": "https://github.com/hausenism/1game-TexasHoldEm#readme",
   "dependencies": {
     "unique-random-array": "1.0.0",
     "validate.js": "0.10.0"

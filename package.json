@@ -1,5 +1,6 @@
 {
   "name": "1game-texas-holdem",
+  "version": "0.0.0-semantically-released",
   "description": "1game-TexasHoldEm",
   "main": "src/index.js",
   "scripts": {

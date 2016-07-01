@@ -25,5 +25,18 @@ describe('poker', function () {
             var i = lib.random();
             expect(lib.all).to.include(i);
         })
+
+        it('should return an array of random items with the specified length', function () {
+            var items = lib.random(3);
+            expect(items).to.have.length(3);
+            items.forEach(function (item) {
+                expect(lib.all).to.include(item);
+            })
+        })
+
+        it('should return an array of random items with Deck size' + lib.all.length, function () {
+            var items = lib.random(Number.MAX_SAFE_INTEGER);
+            expect(items).to.have.length(lib.all.length);
+        })
     })
 })

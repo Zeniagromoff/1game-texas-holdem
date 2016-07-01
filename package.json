@@ -23,7 +23,8 @@
   },
   "homepage": "https://github.com/HausenZheng/1game-TexasHoldEm#readme",
   "dependencies": {
-    "unique-random-array": "1.0.0"
+    "unique-random-array": "1.0.0",
+    "validate.js": "0.10.0"
   },
   "devDependencies": {
     "chai": "3.5.0",

@@ -40,7 +40,7 @@ describe('poker', function () {
         })
     })
 
-    describe('create', function () {
+    describe('game', function () {
         it('should return undefined', function () {
             var game = lib.create();
             expect(game).to.be.undefined;
@@ -52,7 +52,7 @@ describe('poker', function () {
             expect(game.n).to.equal(num);
         })
 
-        it('should has an two-dimension array with ' + drawn + ' elements', function () {
+        it('should has a two-dimension array with ' + drawn + ' elements', function () {
             game.start();
             expect(game.hands).to.have.length(2);
             game.hands.forEach(function (hand) {
@@ -63,6 +63,16 @@ describe('poker', function () {
         it('should return undefined when deck is out', function () {
             for (var i = 0; i < left; i++) { game.draw(); }
             expect(game.draw()).to.be.undefined;
+        })
+
+        it('should only one flop action burns a card and deals 3 cards to board', function () {
+            var game = lib.create(2);
+            expect(game.board).to.have.length(0);
+            game.flop();
+            expect(game.board).to.have.length(3);
+            game.flop();
+            expect(game.board).to.have.length(3);
+            expect(game.remain()).to.equal(lib.all.length - 4);
         })
     })
 })

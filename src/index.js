@@ -24,7 +24,8 @@ function random(size) {
 }
 
 function create(numberOfParticipants) {
-    if (validate.isInteger(numberOfParticipants)) {
+    if (validate.isInteger(numberOfParticipants)
+        && numberOfParticipants < 12) {
         return new game(numberOfParticipants);
     }
 }

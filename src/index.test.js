@@ -1,4 +1,4 @@
-var expect = require('chai').expect;
+import {expect} from 'chai';
 var lib = require('./index');
 var Card = require('./card');
 

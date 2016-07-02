@@ -1,9 +1,9 @@
 'use strict'
 
-const Poker = require('./poker');
-let uniqueRandomArray = require('unique-random-array'),
-    validate = require("validate.js");
-let game = require('./game');
+import Poker from './poker';
+import uniqueRandomArray from 'unique-random-array';
+import validate from 'validate.js';
+import game from './game';
 
 module.exports = {
     all: Poker.Deck,

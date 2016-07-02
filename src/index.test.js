@@ -39,4 +39,30 @@ describe('poker', function () {
             expect(items).to.have.length(lib.all.length);
         })
     })
+
+    describe('create', function () {
+        it('should return undefined', function () {
+            var game = lib.create();
+            expect(game).to.be.undefined;
+        })
+
+        var num = 8, drawn = (num * 2), left = lib.all.length - drawn;
+        var game = lib.create(num);
+        it('should has a game of ' + num + ' participants', function () {
+            expect(game.n).to.equal(num);
+        })
+
+        it('should has an two-dimension array with ' + drawn + ' elements', function () {
+            game.start();
+            expect(game.hands).to.have.length(2);
+            game.hands.forEach(function (hand) {
+                expect(hand).to.have.length(num);
+            })
+        })
+
+        it('should return undefined when deck is out', function () {
+            for (var i = 0; i < left; i++) { game.draw(); }
+            expect(game.draw()).to.be.undefined;
+        })
+    })
 })

@@ -1,3 +1,5 @@
+'use strict'
+
 const uniqueRandomArray = require('unique-random-array'),
     HAND = 2, Poker = require('./poker');
 

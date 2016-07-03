@@ -1,6 +1,6 @@
 import {expect} from 'chai';
-var lib = require('./index');
-var Card = require('./card');
+var lib = require('../src/index');
+var Card = require('../src/card');
 
 describe('poker', function () {
 

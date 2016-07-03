@@ -9,6 +9,7 @@ module.exports = {
     all: Poker.Deck,
     random: random,
     create: create,
+    rule: require('./rule'),
 };
 
 function random(size) {

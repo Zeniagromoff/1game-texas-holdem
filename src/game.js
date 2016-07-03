@@ -9,6 +9,7 @@ var game = function (numberOfParticipants) {
     this.n = numberOfParticipants;
     this.board = [];
     this.hands = [];
+    this.discard = [];
 
     this.draw = function () {
         if (remain > 0) {
@@ -16,15 +17,6 @@ var game = function (numberOfParticipants) {
             return deck();
         }
     };
-
-    this.flop = function () {
-        if (this.board.length == 0) {
-            this.draw();
-            for (var i = 0; i < 3; i++) {
-                this.board.push(this.draw());
-            }
-        }
-    }
 
     this.start = function () {
         for (let i = 0; i < HAND; ++i) {
@@ -36,9 +28,24 @@ var game = function (numberOfParticipants) {
         }
     };
 
+    this.flop = function () { deals(this, 0, 1, 3); }
+    this.turn = function () { deals(this, 3, 1, 1); }
+    this.river = function () { deals(this, 4, 1, 1); }
+
     this.remain = function () {
         return remain;
     }
 };
+
+function deals(game, checkBoard, burns, deals) {
+    if (game.board.length == checkBoard) {
+        for (var i = 0; i < burns; i++) {
+            game.discard.push(game.draw());
+        }
+        for (var i = 0; i < deals; i++) {
+            game.board.push(game.draw());
+        }
+    }
+}
 
 module.exports = game;

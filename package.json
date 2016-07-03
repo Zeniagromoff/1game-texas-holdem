@@ -8,7 +8,7 @@
     "check-coverage": "nyc check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
     "watch:test": "npm t -- -w",
     "test": "mocha -R spec src/index.test.js --compilers js:babel-register",
-    "cover": "nyc mocha -R spec src/index.test.js --compilers js:babel-register",
+    "cover": "nyc --reporter=lcov mocha -R spec src/index.test.js --compilers js:babel-register && nyc report",
     "prebuild": "rimraf dist",
     "build": "babel --copy-files --out-dir dist --ignore *.test.js src",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"

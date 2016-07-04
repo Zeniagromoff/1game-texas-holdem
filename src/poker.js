@@ -29,6 +29,10 @@ Card.from = function (suit, rankName) {
     return deck[j * 4 + i];
 }
 
+Rank.from = function (rankName) {
+    return ranks[rankNames.indexOf(rankName)];
+}
+
 module.exports = {
     Suits: suits,
     Ranks: ranks,

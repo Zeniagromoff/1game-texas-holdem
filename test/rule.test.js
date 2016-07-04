@@ -20,7 +20,7 @@ describe('rule', function () {
             var r = count(showhand, board);
             expect(r).to.have.property('type', 'flush');
             expect(r).to.have.property('suit', 'Diamonds');
-            expect(r.index).to.be.instanceof(Array).to.eql([0, 2, 4, 5, 6]);
+            expect(r.suited).to.be.instanceof(Array).to.eql([0, 2, 3, 4, 5, 6]);
         })
 
         it('should not be undefined for now', function () {

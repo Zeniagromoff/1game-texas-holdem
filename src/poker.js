@@ -23,6 +23,12 @@ for (let j = 0; j < rankNames.length; ++j) {
     ranks.push(r);
 }
 
+Card.from = function (suit, rankName) {
+    var j = rankNames.indexOf(rankName);
+    var i = suits.indexOf(suit);
+    return deck[j * 4 + i];
+}
+
 module.exports = {
     Suits: suits,
     Ranks: ranks,

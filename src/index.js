@@ -10,6 +10,7 @@ module.exports = {
     random: random,
     create: create,
     rule: require('./rule'),
+    poker: Poker,
 };
 
 function random(size) {

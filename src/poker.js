@@ -1,19 +1,32 @@
 'use strict'
 
-let Card = require('./card');
+let Card = function (suit, rank) {
+    this.suit = suit;
+    this.rank = rank;
+};
 
-let suit = ['Spades', 'Hearts', 'Diamonds', 'Clubs'];
-let rank = ['Ace', 'King', 'Queen', 'Jack', 'Ten', 'Nine', 'Eight', 'Seven', 'Six', 'Five', 'Four', 'Three', 'Two'];
+let Rank = function (rankName, value) {
+    this.name = rankName;
+    this.value = value;
+}
+
+let suits = ['Spades', 'Hearts', 'Diamonds', 'Clubs'];
+let rankNames = ['Ace', 'King', 'Queen', 'Jack', 'Ten', 'Nine', 'Eight', 'Seven', 'Six', 'Five', 'Four', 'Three', 'Two'];
+let ranks = [];
 
 let deck = [];
-for (let i = 0; i < suit.length; ++i) {
-    for (let j = 0; j < rank.length; ++j) {
-        deck.push(new Card(suit[i], rank[j]));
+for (let j = 0; j < rankNames.length; ++j) {
+    let r = new Rank(rankNames[j], 14 - j);
+    for (let i = 0; i < suits.length; ++i) {
+        deck.push(new Card(suits[i], r));
     }
+    ranks.push(r);
 }
 
 module.exports = {
-    Suit: suit,
-    Rank: rank,
+    Suits: suits,
+    Ranks: ranks,
     Deck: deck,
+    Card: Card,
+    Rank: Rank,
 };

@@ -32,6 +32,14 @@ describe('rule', function () {
             expect(r).to.have.property('high', R('Jack').value);
         })
 
+        it('should be a Straight with Five High', function () {
+            var showhand = [$('Spades', 'Ace'), $('Clubs', 'Eight')];
+            var board = [$('Hearts', 'Four'), $('Diamonds', 'Three'), $('Spades', 'Ten'), $('Hearts', 'Five'), $('Diamonds', 'Two')];
+            var r = count(showhand, board);
+            expect(r).to.have.property('type', 'Straight');
+            expect(r).to.have.property('high', R('Five').value);
+        })
+
         it('should be a Quad of Queen with Ace High', function () {
             var showhand = [$('Spades', 'Queen'), $('Clubs', 'Queen')];
             var board = [$('Hearts', 'Queen'), $('Diamonds', 'Nine'), $('Spades', 'Ace'), $('Hearts', 'Nine'), $('Diamonds', 'Queen')];

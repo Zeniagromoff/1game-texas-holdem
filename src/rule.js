@@ -1,5 +1,4 @@
 'use strict'
-const straight = (1 << 5) + (1 << 4) + (1 << 3) + (1 << 2) + (1 << 1);
 const v$ = 0, c$ = 1;
 
 function _count(input, output) {
@@ -8,44 +7,27 @@ function _count(input, output) {
     for (var i = 0; i < input.length; i++) {
         var card = input[i];
         var suit = card.suit, rValue = card.rank.value;
-        if (sts.has(suit)) { sts.get(suit).push(rValue); }
-        else { sts.set(suit, [rValue]); }
-        if (rks.has(rValue)) { rks.set(rValue, rks.get(rValue) + 1); }
-        else { rks.set(rValue, 1); }
+        if (sts.has(suit)) {
+            sts.get(suit).push([rValue, 1]);
+        } else {
+            sts.set(suit, [[rValue, 1]]);
+        }
+        if (rks.has(rValue)) {
+            rks.set(rValue, rks.get(rValue) + 1);
+        } else {
+            rks.set(rValue, 1);
+        }
     }
-    output.suits.forEach(function (rankValueArr, suit, map) {
-        if (rankValueArr.length >= 5) {
+    output.suits.forEach(function (vcArr, suit, map) {
+        if (vcArr.length >= 5) {
             output.suit = suit;
-            _countStraightHigh(rankValueArr, output);
-            output.type = (output.type || '') + 'Flush';
+            _countKinds(vcArr, output);
+            output.type = (output.type === 'Straight' ? 'StraightFlush' : 'Flush');
         }
     })
     if (!output.type) {
-        _countStraightHigh(Array.from(output.ranks.keys()), output);
-        if (!output.type) {
-            _countKinds(Array.from(output.ranks.entries()), output);
-        }
+        _countKinds(Array.from(output.ranks.entries()), output);
     }
-    return output;
-}
-
-function _countStraightHigh(rankValueArr, output) {
-    var c = 0, s = 0, f, h = 0;
-    for (var i = 0; i < rankValueArr.length; i++) {
-        var value = rankValueArr[i];
-        s += (1 << value);
-        if (value == 14) s += (1 << 1);
-        if (h < value) h = value;
-    }
-    while (s >= straight) {
-        if ((s & straight) == straight) { f = c; }
-        ++c; s = s >> 1;
-    }
-    if (f) {
-        output.type = "Straight";
-        output.strHigh = 5 + f;
-    }
-    output.high = h;
     return output;
 }
 
@@ -56,6 +38,23 @@ function _countKinds(vcArr, output) {
         if (count == 0) count = b[v$] - a[v$];
         return count;
     });
+    if (vcArr.length >= 5) {
+        if (vcArr[0][v$] == 14) {
+            vcArr.push([1, 1]);
+        }
+        for (var i = 0; i <= vcArr.length - 5; i++) {
+            var head = vcArr[i][v$];
+            var end = vcArr[i + 4][v$]
+            if ((head - end) == 4) {
+                output.type = 'Straight';
+                output.high = head;
+                break;
+            }
+        }
+    }
+    if (output.type === 'Straight') {
+        return output;
+    }
     if (vcArr[0][c$] == 4) {
         output.type = 'Quad';
         output.value = vcArr.shift()[v$];
@@ -82,6 +81,7 @@ function _countKinds(vcArr, output) {
     } else {
         output.type = 'High';
         output.value = vcArr.slice(0, 5).map(e => e[v$]);
+        output.high = output.value[0];
     }
     return output;
 }

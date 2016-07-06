@@ -12,7 +12,7 @@ describe('rule', function () {
             var r = count(showhand, board);
             expect(r).to.have.property('type', 'StraightFlush');
             expect(r).to.have.property('suit', 'Diamonds');
-            expect(r).to.have.property('strHigh', R('Ten').value);
+            expect(r).to.have.property('high', R('Ten').value);
         })
 
         it('should be a Flush with Ace High', function () {
@@ -120,6 +120,7 @@ describe('rule', function () {
             expect(r).to.have.property('type', 'High');
             expect(r.value).to.be.instanceof(Array).to.have.lengthOf(5)
                 .to.include.members([R('King').value, R('Ace').value, R('Jack').value, R('Six').value, R('Seven').value]);
+            expect(r).to.have.property('high', R('Ace').value);
         })
     })
 })

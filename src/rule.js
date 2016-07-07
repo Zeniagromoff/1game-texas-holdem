@@ -4,50 +4,60 @@ const v$ = 0, c$ = 1;
 function _count(input, output) {
     var sts = output.suits = new Map(), rks = output.ranks = new Map();
     output.opps = 7 - input.length;
+    var max = 0, ms;
     for (var i = 0; i < input.length; i++) {
         var card = input[i];
         var suit = card.suit, rValue = card.rank.value;
-        if (sts.has(suit)) {
-            sts.get(suit).push([rValue, 1]);
-        } else {
-            sts.set(suit, [[rValue, 1]]);
+        if (max + 7 - i >= 5) {
+            if (!sts.has(suit)) {
+                sts.set(suit, []);
+            }
+            var suited = sts.get(suit);
+            suited.push([rValue, [i]]);
+            if (suited.length > max) {
+                max = suited.length; ms = suit;
+            }
         }
-        if (rks.has(rValue)) {
-            rks.set(rValue, rks.get(rValue) + 1);
-        } else {
-            rks.set(rValue, 1);
+        if (!rks.has(rValue)) {
+            rks.set(rValue, []);
         }
+        rks.get(rValue).push(i);
     }
-    output.suits.forEach(function (vcArr, suit, map) {
-        if (vcArr.length >= 5) {
-            output.suit = suit;
-            _countKinds(vcArr, output);
-            output.type = (output.type === 'Straight' ? 'StraightFlush' : 'Flush');
-        }
-    })
-    if (!output.type) {
+    if (max >= 5) {
+        var vcArr = output.suits.get(ms);
+        output.suit = ms;
+        _countKinds(vcArr, output);
+        output.type = (output.type === 'Straight' ? 'StraightFlush' : 'Flush');
+    } else {
         _countKinds(Array.from(output.ranks.entries()), output);
     }
     return output;
 }
 
+function compare(p, c, i, arr) {
+    return p[v$] > c[v$] ? p : c;
+}
+
 function _countKinds(vcArr, output) {
     vcArr.sort(function (a, b) {
         // b is greater than a, then swap.
-        var count = b[c$] - a[c$];
+        var count = b[c$].length - a[c$].length;
         if (count == 0) count = b[v$] - a[v$];
         return count;
     });
     if (vcArr.length >= 5) {
         if (vcArr[0][v$] == 14) {
-            vcArr.push([1, 1]);
+            vcArr.push([1, vcArr[0][c$]]);
         }
         for (var i = 0; i <= vcArr.length - 5; i++) {
             var head = vcArr[i][v$];
             var end = vcArr[i + 4][v$]
             if ((head - end) == 4) {
                 output.type = 'Straight';
-                output.high = head;
+                output.ix = [];
+                for (var j = i; j < i + 5; ++j) {
+                    output.ix.push(vcArr[j][c$][0]);
+                }
                 break;
             }
         }
@@ -55,33 +65,29 @@ function _countKinds(vcArr, output) {
     if (output.type === 'Straight') {
         return output;
     }
-    if (vcArr[0][c$] == 4) {
+    var n0 = vcArr[0][c$], n1 = vcArr[1][c$], n2 = vcArr[2][c$];
+    if (n0.length == 4) {
         output.type = 'Quad';
-        output.value = vcArr.shift()[v$];
-        output.high = Math.max.apply(Math, vcArr.map(e => e[v$]));
-    } else if (vcArr[0][c$] == 3) {
-        output.value = vcArr.shift()[v$];
-        if (vcArr[0][c$] > 1) {
+        output.ix = n0.concat(vcArr.slice(1).reduce(compare)[c$][0]);
+    } else if (n0.length == 3) {
+        if (n1.length > 1) {
             output.type = 'FullHouse';
-            output.high = vcArr[0][v$];
+            output.ix = n0.concat(n1[0], n1[1]);
         } else {
             output.type = 'Set';
-            output.high = [vcArr[0][v$], vcArr[1][v$]];
+            output.ix = n0.concat(n1, n2);
         }
-    } else if (vcArr[0][c$] == 2) {
-        if (vcArr[1][c$] == 2) {
+    } else if (n0.length == 2) {
+        if (n1.length == 2) {
             output.type = 'TwoPairs';
-            output.value = [vcArr[0][v$], vcArr[1][v$]];
-            output.high = vcArr[2][v$];
+            output.ix = n0.concat(n1, vcArr.slice(2).reduce(compare)[c$][0]);
         } else {
             output.type = 'Pair';
-            output.value = vcArr[0][v$];
-            output.high = [vcArr[1][v$], vcArr[2][v$], vcArr[3][v$]];
+            output.ix = n0.concat(n1, n2, vcArr[3][c$]);
         }
     } else {
         output.type = 'High';
-        output.value = vcArr.slice(0, 5).map(e => e[v$]);
-        output.high = output.value[0];
+        output.ix = vcArr.slice(0, 5).map(e => e[c$][0]);
     }
     return output;
 }

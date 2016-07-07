@@ -10,7 +10,9 @@ let Rank = function (rankName, value) {
     this.value = value;
 }
 
+let StSuit = ['S', 'H', 'D', 'C'];
 let suits = ['Spades', 'Hearts', 'Diamonds', 'Clubs'];
+let StRank = ["A", "K", "Q", "J", "T", "9", "8", "7", "6", "5", "4", "3", "2"];
 let rankNames = ['Ace', 'King', 'Queen', 'Jack', 'Ten', 'Nine', 'Eight', 'Seven', 'Six', 'Five', 'Four', 'Three', 'Two'];
 let ranks = [];
 
@@ -34,6 +36,10 @@ Rank.from = function (rankName) {
 }
 
 module.exports = {
+    SuitNames: suits,
+    StSuitNames: StSuit,
+    RankNames: rankNames,
+    StRankNames: StRank,
     Suits: suits,
     Ranks: ranks,
     Deck: deck,

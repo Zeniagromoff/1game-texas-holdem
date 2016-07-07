@@ -47,22 +47,13 @@ function _countKinds(vcArr, output) {
             vcArr.push([1, vcArr[0][c$]]);
         }
         for (var i = 0; i <= vcArr.length - 5; i++) {
-            var head = vcArr[i][v$], b = true;
-            output.ix = [vcArr[i][c$][0]];
-            for (var j = 1; j < 5; ++j) {
-                var z = i + j;
-                b = (head - vcArr[z][v$]) == j;
-                output.ix.push(vcArr[z][c$][0]);
-                if (!b) break;
-            }
-            if (b) {
+            var head = vcArr[i][v$], end = vcArr[i + 4][v$];
+            if ((head - end) == 4) {
                 output.type = 'Straight';
-                break;
-            } else { delete output.ix; }
+                output.ix = vcArr.slice(i, i + 5).map(e => e[c$][0]);
+                return;
+            }
         }
-    }
-    if (output.type === 'Straight') {
-        return output;
     }
     vcArr.sort(function (a, b) {
         return b[c$].length - a[c$].length;

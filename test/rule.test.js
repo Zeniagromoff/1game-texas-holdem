@@ -162,6 +162,17 @@ describe('rule', function () {
             expect(r.ix[4]).to.equal(4);
         })
 
+        it('should be a Pair of Ace with Ten & Jack & Nine High', function () {
+            var showhand = [C_J, H_T];
+            var board = [D_A, D_4, C_8, D_9, H_A];
+            var r = count(showhand, board);
+            expect(r).to.have.property('type', 'Pair');
+            expect(r.ix[0]).to.equal(2);
+            expect(r.ix[2]).to.equal(0);
+            expect(r.ix[3]).to.equal(1);
+            expect(r.ix[4]).to.equal(5);
+        })
+
         it('should be a wins over b', function () {
             var a = { input: [D_7, D_T, D_8, H_4, D_9, C_2, D_6] };
             var b = { input: [H_T, C_5, D_8, H_4, D_9, C_2, D_6] };

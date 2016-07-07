@@ -45,7 +45,7 @@ function _countKinds(vcArr, output) {
     });
     if (vcArr.length >= 5) {
         if (vcArr[0][v$] == 14) {
-            vcArr.push([1, vcArr[0][c$]]);
+            vcArr.push([1, [vcArr[0][c$][0]]]);
         }
         for (var i = 0; i <= vcArr.length - 5; i++) {
             var head = vcArr[i][v$], end = vcArr[i + 4][v$];

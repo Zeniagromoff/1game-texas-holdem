@@ -32,6 +32,7 @@ describe('rule', function () {
             expect(r).to.have.property('suit', 'Diamonds');
             expect(r.ix[0]).to.equal(1);
             expect(showhand[r.ix[0]]).to.have.property('rank', R('Ace'));
+            expect(showhand[r.ix[0]]).to.equal($('Diamonds', 'Ace'));
         })
 
         it('should be a Straight with Jack High', function () {
@@ -116,8 +117,8 @@ describe('rule', function () {
         })
 
         it('should be a TwoPairs of King & Jack with Five High', function () {
-            var showhand = [$('Spades', 'Two'), $('Diamonds', 'King')];
-            var board = [$('Hearts', 'King'), $('Clubs', 'Jack'), D_4, $('Clubs', 'Five'), H_J];
+            var showhand = [S_2, D_K];
+            var board = [H_K, C_J, D_4, C_5, H_J];
             var r = count(showhand, board);
             expect(r).to.have.property('type', 'TwoPairs');
             expect(r.ix[1]).to.equal(2);
@@ -126,8 +127,8 @@ describe('rule', function () {
         })
 
         it('should be a Pair of King with Jack & Seven & Five High', function () {
-            var showhand = [$('Spades', 'Two'), $('Diamonds', 'King')];
-            var board = [$('Hearts', 'King'), $('Clubs', 'Jack'), D_4, $('Clubs', 'Five'), $('Hearts', 'Seven')];
+            var showhand = [S_2, D_K];
+            var board = [H_K, C_J, D_4, C_5, H_7];
             var r = count(showhand, board);
             expect(r).to.have.property('type', 'Pair');
             expect(r.ix[0]).to.equal(1);
@@ -136,11 +137,21 @@ describe('rule', function () {
         })
 
         it('should be a High of Ace & King & Jack & Seven & Six High', function () {
-            var showhand = [S_A, $('Diamonds', 'King')];
-            var board = [$('Hearts', 'Six'), $('Clubs', 'Jack'), D_2, $('Clubs', 'Five'), $('Hearts', 'Seven')];
+            var showhand = [S_A, D_K];
+            var board = [H_6, C_J, D_2, C_5, H_7];
             var r = count(showhand, board);
             expect(r).to.have.property('type', 'High');
             expect(r.ix[0]).to.equal(0);
+        })
+
+        it('should be a TwoPairs of Queen & Five with King High', function () {
+            var showhand = [H_T, C_5];
+            var board = [D_8, C_Q, S_K, D_Q, H_5];
+            var r = count(showhand, board);
+            expect(r).to.have.property('type', 'TwoPairs');
+            expect(r.ix[0]).to.equal(3);
+            expect(r.ix[2]).to.equal(1);
+            expect(r.ix[4]).to.equal(4);
         })
     })
 })

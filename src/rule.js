@@ -40,10 +40,7 @@ function compare(p, c, i, arr) {
 
 function _countKinds(vcArr, output) {
     vcArr.sort(function (a, b) {
-        // b is greater than a, then swap.
-        var count = b[c$].length - a[c$].length;
-        if (count == 0) count = b[v$] - a[v$];
-        return count;
+        return b[v$] - a[v$];
     });
     if (vcArr.length >= 5) {
         if (vcArr[0][v$] == 14) {
@@ -67,6 +64,9 @@ function _countKinds(vcArr, output) {
     if (output.type === 'Straight') {
         return output;
     }
+    vcArr.sort(function (a, b) {
+        return b[c$].length - a[c$].length;
+    });
     var n0 = vcArr[0][c$], n1 = vcArr[1][c$], n2 = vcArr[2][c$];
     if (n0.length == 4) {
         output.type = 'Quad';

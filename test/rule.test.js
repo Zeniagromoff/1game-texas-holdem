@@ -43,6 +43,14 @@ describe('rule', function () {
             expect(r.ix[0]).to.equal(5);
         })
 
+        it('should be a Straight with King High', function () {
+            var showhand = [S_Q, C_K];
+            var board = [H_Q, D_9, S_T, H_J, D_4];
+            var r = count(showhand, board);
+            expect(r).to.have.property('type', 'Straight');
+            expect(r.ix[0]).to.equal(1);
+        })
+
         it('should be a Straight with Five High', function () {
             var showhand = [S_A, C_8];
             var board = [H_4, D_3, S_T, H_5, D_2];

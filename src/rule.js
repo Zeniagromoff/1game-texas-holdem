@@ -1,5 +1,6 @@
 'use strict'
 const v$ = 0, c$ = 1;
+const types = ['StraightFlush', 'Quad', 'FullHouse', 'Flush', 'Straight', 'Set', 'TwoPairs', 'Pair', 'High'];
 
 function _count(input, output) {
     var sts = output.suits = new Map(), rks = output.ranks = new Map();
@@ -8,7 +9,7 @@ function _count(input, output) {
     for (var i = 0; i < input.length; i++) {
         var card = input[i];
         var suit = card.suit, rValue = card.rank.value;
-        if (max + 7 - i >= 5) {
+        if (max + input.length - i >= 5) {
             if (!sts.has(suit)) {
                 sts.set(suit, []);
             }
@@ -92,4 +93,21 @@ function count(showhand, board) {
     return output;
 }
 
-module.exports = { count: count };
+function fight(a, b) {
+    var check = function (obj) {
+        if (!obj.output) {
+            obj.output = new Object();
+            _count(obj.input, obj.output);
+        }
+    };
+    check(a);
+    check(b);
+    var ai = types.indexOf(a.output.type);
+    var bi = types.indexOf(b.output.type);
+    return ai - bi;
+}
+
+module.exports = {
+    count: count,
+    fight: fight,
+};

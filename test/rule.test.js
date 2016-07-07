@@ -161,5 +161,13 @@ describe('rule', function () {
             expect(r.ix[2]).to.equal(1);
             expect(r.ix[4]).to.equal(4);
         })
+
+        it('should be a wins over b', function () {
+            var a = { input: [D_7, D_T, D_8, H_4, D_9, C_2, D_6] };
+            var b = { input: [H_T, C_5, D_8, H_4, D_9, C_2, D_6] };
+            b.output = count([H_T, C_5], [D_8, H_4, D_9, C_2, D_6]);
+            var r = rule.fight(a, b);
+            expect(r < 0).to.equal(true);
+        })
     })
 })

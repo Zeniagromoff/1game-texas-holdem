@@ -31,7 +31,6 @@
   },
   "homepage": "https://github.com/hausenism/1game-TexasHoldEm#readme",
   "dependencies": {
-    "unique-random-array": "1.0.0",
     "validate.js": "0.10.0"
   },
   "devDependencies": {

@@ -1,10 +1,10 @@
 import {expect} from 'chai';
-import {all, poker, random, create, rule} from '../src/index';
-var Card = poker.Card, Rank = poker.Rank;
+import {poker, sample, rule} from '../src/index';
+var Card = poker.Card, Rank = poker.Rank, all = poker.Deck;
 
 describe('poker', function () {
 
-    describe('all', function () {
+    describe('deck', function () {
         it('should be an array of Cards', function () {
             expect(all).to.satisfy(isArrayOfCards);
 
@@ -22,12 +22,12 @@ describe('poker', function () {
 
     describe('game', function () {
         it('should return undefined', function () {
-            var game = create();
+            var game = sample();
             expect(game).to.be.undefined;
         })
 
         var num = 8, drawn = (num * 2), left = all.length - drawn - 3 - 5;
-        var game = create(num);
+        var game = sample(num);
         it('should has a game of ' + num + ' participants', function () {
             expect(game.n).to.equal(num);
         })

@@ -1,7 +1,7 @@
 {
   "name": "1game-texas-holdem",
   "version": "0.0.0-semantically-released",
-  "description": "1game-TexasHoldEm",
+  "description": "Texas Hold'em developed in NodeJS by 1game",
   "main": "dist/index.js",
   "scripts": {
     "commit": "git-cz",
@@ -15,10 +15,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/hausenism/1game-TexasHoldEm.git"
+    "url": "https://github.com/hausenism/1game-texas-holdem.git"
   },
   "keywords": [
-    "1game-TexasHoldEm"
+    "1game",
+    "texas hold'em"
   ],
   "files": [
     "dist",
@@ -27,9 +28,9 @@
   "author": "hausenism <hausenism@hotmail.com> (http://weibo.com/hausenism)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/hausenism/1game-TexasHoldEm/issues"
+    "url": "https://github.com/hausenism/1game-texas-holdem/issues"
   },
-  "homepage": "https://github.com/hausenism/1game-TexasHoldEm#readme",
+  "homepage": "https://github.com/hausenism/1game-texas-holdem#readme",
   "dependencies": {
     "validate.js": "0.10.0"
   },

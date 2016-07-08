@@ -48,7 +48,7 @@ console.log(output.ix);
 * RankNames (Ranks' Names)
 * StRankNames   (ShortNames for RankNames)
 * Suits (4 Suits)
-* Ranks (14 Ranks from Ace to Two)
+* Ranks (13 Ranks from Ace to Two)
 * Deck  (52 Cards in initial order)
 * Card  (Card prototype)
 * Rank  (Rank prototype)

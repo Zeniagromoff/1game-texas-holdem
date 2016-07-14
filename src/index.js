@@ -2,7 +2,6 @@
 
 import Poker from './poker';
 import Rule from './rule';
-import validate from 'validate.js';
 
 module.exports = {
     sample: create,
@@ -11,7 +10,7 @@ module.exports = {
 };
 
 function create(numberOfParticipants) {
-    if (validate.isInteger(numberOfParticipants)
+    if (Number.isInteger(numberOfParticipants)
         && numberOfParticipants < 12) {
         return new game(numberOfParticipants);
     }

@@ -22,7 +22,7 @@ describe('poker', function () {
 
     describe('game', function () {
         it('should return undefined', function () {
-            var game = sample();
+            var game = sample("1");
             expect(game).to.be.undefined;
         })
 

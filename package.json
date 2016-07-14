@@ -31,9 +31,7 @@
     "url": "https://github.com/hausenism/1game-texas-holdem/issues"
   },
   "homepage": "https://github.com/hausenism/1game-texas-holdem#readme",
-  "dependencies": {
-    "validate.js": "0.10.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "babel-cli": "^6.10.1",
     "babel-preset-es2015": "^6.9.0",

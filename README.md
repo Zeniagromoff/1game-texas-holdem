@@ -37,7 +37,7 @@ console.log('The 5th Player\'s Hands: ', pHands);
 var input = pHands.concat(board);
 var output = th.rule.count(input);
 // show what the player hits
-console.log(output.type);
+console.log(output.rank);
 // show the related indexs
 console.log(output.ix);
 ```

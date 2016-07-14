@@ -56,7 +56,8 @@ console.log(output.ix);
 
 ### rule
 * count
-* fight
+* rankings (Names for Hand Ranks)
+* value
 
 ### sample
     a simple game structure 

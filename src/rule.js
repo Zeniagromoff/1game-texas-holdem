@@ -86,28 +86,20 @@ function _countKinds(vcArr, output) {
     return output;
 }
 
+function value(input, output) {
+    return output.ix.reduce(function (pV, cV, i, arr) {
+        return pV + Number(input[cV].rank.value).toString(16);
+    }, Number(output.rank).toString(16));
+}
+
 function count(input) {
     var output = new Object();
     _count(input, output);
     return output;
 }
 
-function fight(a, b) {
-    var check = (obj) => {
-        if (!obj.output) {
-            obj.output = new Object();
-            _count(obj.input, obj.output);
-        }
-    };
-    check(a);
-    check(b);
-    var ai = types.indexOf(a.output.type);
-    var bi = types.indexOf(b.output.type);
-    return ai - bi;
-}
-
 module.exports = {
     count: count,
-    fight: fight,
+    value: value,
     rankings: rankings,
 };

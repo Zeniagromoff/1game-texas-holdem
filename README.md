@@ -34,7 +34,8 @@ console.log('The 5th Player\'s Hands: ', pHands);
 ```javascript
 // after you retrieve the Hands and the Board.
 // API - `rule` -> `count`
-var output = th.rule.count(pHands, board);
+var input = pHands.concat(board);
+var output = th.rule.count(input);
 // show what the player hits
 console.log(output.type);
 // show the related indexs

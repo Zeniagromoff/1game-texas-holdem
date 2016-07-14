@@ -86,8 +86,7 @@ function _countKinds(vcArr, output) {
     return output;
 }
 
-function count(showhand, board) {
-    var input = showhand.concat(board);
+function count(input) {
     var output = new Object();
     _count(input, output);
     return output;

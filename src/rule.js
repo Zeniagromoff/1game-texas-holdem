@@ -1,6 +1,6 @@
 'use strict'
 const v$ = 0, c$ = 1;
-const types = ['StraightFlush', 'Quad', 'FullHouse', 'Flush', 'Straight', 'Set', 'TwoPairs', 'Pair', 'High'];
+const rankings = ['High', 'Pair', 'TwoPairs', 'Set', 'Straight', 'Flush', 'FullHouse', 'Quad', 'StraightFlush'];
 
 function _count(input, output) {
     var sts = output.suits = new Map(), rks = output.ranks = new Map();
@@ -28,7 +28,7 @@ function _count(input, output) {
         var vcArr = output.suits.get(ms);
         output.suit = ms;
         _countKinds(vcArr, output);
-        output.type = (output.type === 'Straight' ? 'StraightFlush' : 'Flush');
+        output.rank = (output.rank === 4 ? 8 : 5);
     } else {
         _countKinds(Array.from(output.ranks.entries()), output);
     }
@@ -50,7 +50,7 @@ function _countKinds(vcArr, output) {
         for (var i = 0; i <= vcArr.length - 5; i++) {
             var head = vcArr[i][v$], end = vcArr[i + 4][v$];
             if ((head - end) == 4) {
-                output.type = 'Straight';
+                output.rank = 4;
                 output.ix = vcArr.slice(i, i + 5).map(e => e[c$][0]);
                 return;
             }
@@ -61,26 +61,26 @@ function _countKinds(vcArr, output) {
     });
     var n0 = vcArr[0][c$], n1 = vcArr[1][c$], n2 = vcArr[2][c$];
     if (n0.length == 4) {
-        output.type = 'Quad';
+        output.rank = 7;
         output.ix = n0.concat(vcArr.slice(1).reduce(compare)[c$][0]);
     } else if (n0.length == 3) {
         if (n1.length > 1) {
-            output.type = 'FullHouse';
+            output.rank = 6;
             output.ix = n0.concat(n1[0], n1[1]);
         } else {
-            output.type = 'Set';
+            output.rank = 3;
             output.ix = n0.concat(n1, n2);
         }
     } else if (n0.length == 2) {
         if (n1.length == 2) {
-            output.type = 'TwoPairs';
+            output.rank = 2;
             output.ix = n0.concat(n1, vcArr.slice(2).reduce(compare)[c$][0]);
         } else {
-            output.type = 'Pair';
+            output.rank = 1;
             output.ix = n0.concat(n1, n2, vcArr[3][c$]);
         }
     } else {
-        output.type = 'High';
+        output.rank = 0;
         output.ix = vcArr.slice(0, 5).map(e => e[c$][0]);
     }
     return output;
@@ -94,7 +94,7 @@ function count(showhand, board) {
 }
 
 function fight(a, b) {
-    var check = function (obj) {
+    var check = (obj) => {
         if (!obj.output) {
             obj.output = new Object();
             _count(obj.input, obj.output);
@@ -110,4 +110,5 @@ function fight(a, b) {
 module.exports = {
     count: count,
     fight: fight,
+    rankings: rankings,
 };

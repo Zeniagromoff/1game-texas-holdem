@@ -19,16 +19,16 @@ describe('rule', function () {
             var showhand = [D_7, D_T];
             var board = [D_8, H_4, D_9, C_2, D_6];
             var r = count(showhand, board);
-            expect(r).to.have.property('type', 'StraightFlush');
+            expect(r).to.have.property('rank', 8);
             expect(r).to.have.property('suit', 'Diamonds');
             expect(r.ix[0]).to.equal(1);
         })
 
         it('should be a Flush with Ace High', function () {
             var showhand = [D_7, D_A];
-            var board = [D_8, H_4, D_9, D_2, C_4];
+            var board = [D_8, H_4, D_9, D_3, C_4];
             var r = count(showhand, board);
-            expect(r).to.have.property('type', 'Flush');
+            expect(r).to.have.property('rank', 5);
             expect(r).to.have.property('suit', 'Diamonds');
             expect(r.ix[0]).to.equal(1);
             expect(showhand[r.ix[0]]).to.have.property('rank', R('Ace'));
@@ -39,7 +39,7 @@ describe('rule', function () {
             var showhand = [S_7, C_8];
             var board = [H_4, D_9, S_T, H_J, D_4];
             var r = count(showhand, board);
-            expect(r).to.have.property('type', 'Straight');
+            expect(r).to.have.property('rank', 4);
             expect(r.ix[0]).to.equal(5);
         })
 
@@ -47,7 +47,7 @@ describe('rule', function () {
             var showhand = [S_Q, C_K];
             var board = [H_Q, D_9, S_T, H_J, D_4];
             var r = count(showhand, board);
-            expect(r).to.have.property('type', 'Straight');
+            expect(r).to.have.property('rank', 4);
             expect(r.ix[0]).to.equal(1);
         })
 
@@ -55,7 +55,7 @@ describe('rule', function () {
             var showhand = [S_A, C_8];
             var board = [H_4, D_3, S_T, H_5, D_2];
             var r = count(showhand, board);
-            expect(r).to.have.property('type', 'Straight');
+            expect(r).to.have.property('rank', 4);
             expect(r.ix[4]).to.equal(0);
         })
 
@@ -63,7 +63,7 @@ describe('rule', function () {
             var showhand = [S_Q, C_Q];
             var board = [H_Q, D_9, S_A, H_9, D_Q];
             var r = count(showhand, board);
-            expect(r).to.have.property('type', 'Quad');
+            expect(r).to.have.property('rank', 7);
             expect(r.ix[0]).to.equal(0);
             expect(r.ix[4]).to.equal(4);
         })
@@ -72,7 +72,7 @@ describe('rule', function () {
             var showhand = [S_2, C_2];
             var board = [H_2, S_T, H_6, D_9, D_2];
             var r = count(showhand, board);
-            expect(r).to.have.property('type', 'Quad');
+            expect(r).to.have.property('rank', 7);
             expect(r.ix[1]).to.equal(1);
             expect(r.ix[4]).to.equal(3);
         })
@@ -81,7 +81,7 @@ describe('rule', function () {
             var showhand = [S_8, C_2];
             var board = [H_5, D_5, C_5, H_8, D_8];
             var r = count(showhand, board);
-            expect(r).to.have.property('type', 'FullHouse');
+            expect(r).to.have.property('rank', 6);
             expect(r.ix[1]).to.equal(5);
             expect(r.ix[4]).to.equal(3);
         })
@@ -90,7 +90,7 @@ describe('rule', function () {
             var showhand = [S_8, D_A];
             var board = [H_5, C_A, D_5, C_5, H_8];
             var r = count(showhand, board);
-            expect(r).to.have.property('type', 'FullHouse');
+            expect(r).to.have.property('rank', 6);
             expect(r.ix[0]).to.equal(2);
             expect(r.ix[4]).to.equal(3);
         })
@@ -99,7 +99,7 @@ describe('rule', function () {
             var showhand = [S_8, D_A];
             var board = [H_5, C_2, D_5, C_5, H_8];
             var r = count(showhand, board);
-            expect(r).to.have.property('type', 'FullHouse');
+            expect(r).to.have.property('rank', 6);
             expect(r.ix[2]).to.equal(5);
             expect(r.ix[4]).to.equal(6);
         })
@@ -108,7 +108,7 @@ describe('rule', function () {
             var showhand = [S_9, D_K];
             var board = [H_9, C_2, D_9, C_5, H_8];
             var r = count(showhand, board);
-            expect(r).to.have.property('type', 'Set');
+            expect(r).to.have.property('rank', 3);
             expect(r.ix[0]).to.equal(0);
             expect(r.ix[3]).to.equal(1);
             expect(r.ix[4]).to.equal(6);
@@ -118,7 +118,7 @@ describe('rule', function () {
             var showhand = [S_Q, D_K];
             var board = [H_K, C_J, D_Q, C_A, H_J];
             var r = count(showhand, board);
-            expect(r).to.have.property('type', 'TwoPairs');
+            expect(r).to.have.property('rank', 2);
             expect(r.ix[0]).to.equal(1);
             expect(r.ix[2]).to.equal(0);
             expect(r.ix[4]).to.equal(5);
@@ -128,7 +128,7 @@ describe('rule', function () {
             var showhand = [S_2, D_K];
             var board = [H_K, C_J, D_4, C_5, H_J];
             var r = count(showhand, board);
-            expect(r).to.have.property('type', 'TwoPairs');
+            expect(r).to.have.property('rank', 2);
             expect(r.ix[1]).to.equal(2);
             expect(r.ix[2]).to.equal(3);
             expect(r.ix[4]).to.equal(5);
@@ -138,7 +138,7 @@ describe('rule', function () {
             var showhand = [S_2, D_K];
             var board = [H_K, C_J, D_4, C_5, H_7];
             var r = count(showhand, board);
-            expect(r).to.have.property('type', 'Pair');
+            expect(r).to.have.property('rank', 1);
             expect(r.ix[0]).to.equal(1);
             expect(r.ix[3]).to.equal(6);
             expect(r.ix[4]).to.equal(5);
@@ -148,7 +148,7 @@ describe('rule', function () {
             var showhand = [S_A, D_K];
             var board = [H_6, C_J, D_2, C_5, H_7];
             var r = count(showhand, board);
-            expect(r).to.have.property('type', 'High');
+            expect(r).to.have.property('rank', 0);
             expect(r.ix[0]).to.equal(0);
         })
 
@@ -156,7 +156,7 @@ describe('rule', function () {
             var showhand = [H_T, C_5];
             var board = [D_8, C_Q, S_K, D_Q, H_5];
             var r = count(showhand, board);
-            expect(r).to.have.property('type', 'TwoPairs');
+            expect(r).to.have.property('rank', 2);
             expect(r.ix[0]).to.equal(3);
             expect(r.ix[2]).to.equal(1);
             expect(r.ix[4]).to.equal(4);
@@ -166,7 +166,7 @@ describe('rule', function () {
             var showhand = [C_J, H_T];
             var board = [D_A, D_4, C_8, D_9, H_A];
             var r = count(showhand, board);
-            expect(r).to.have.property('type', 'Pair');
+            expect(r).to.have.property('rank', 1);
             expect(r.ix[0]).to.equal(2);
             expect(r.ix[2]).to.equal(0);
             expect(r.ix[3]).to.equal(1);

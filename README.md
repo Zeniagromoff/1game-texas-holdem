@@ -40,6 +40,9 @@ var output = th.rule.count(input);
 console.log(output.rank);
 // show the related indexs
 console.log(output.ix);
+// construct the value string
+var val = th.rule.value(input, output);
+console.log(val);
 ```
 
 ## API

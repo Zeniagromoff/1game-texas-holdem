@@ -38,7 +38,7 @@ var input = pHands.concat(board);
 var output = th.rule.count(input);
 // show what the player hits
 console.log(output.rank);
-// show the related indexs
+// show the related indexs of the `best` five cards.
 console.log(output.ix);
 // construct the value string
 var val = th.rule.value(input, output);
@@ -58,7 +58,7 @@ console.log(val);
 * Rank  (Rank prototype)
 
 ### rule
-* count
+* count (5 to 7 card hands evaluation)
 * rankings (Names for Hand Ranks)
 * value
 

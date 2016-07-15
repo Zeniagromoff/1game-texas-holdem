@@ -59,7 +59,7 @@ function _countKinds(vcArr, output) {
     vcArr.sort(function (a, b) {
         return b[c$].length - a[c$].length;
     });
-    var n0 = vcArr[0][c$], n1 = vcArr[1][c$], n2 = vcArr[2][c$];
+    var n0 = vcArr[0][c$], n1 = vcArr[1][c$];
     if (n0.length == 4) {
         output.rank = 7;
         output.ix = n0.concat(vcArr.slice(1).reduce(compare)[c$][0]);
@@ -69,7 +69,7 @@ function _countKinds(vcArr, output) {
             output.ix = n0.concat(n1[0], n1[1]);
         } else {
             output.rank = 3;
-            output.ix = n0.concat(n1, n2);
+            output.ix = n0.concat(n1, vcArr[2][c$]);
         }
     } else if (n0.length == 2) {
         if (n1.length == 2) {
@@ -77,7 +77,7 @@ function _countKinds(vcArr, output) {
             output.ix = n0.concat(n1, vcArr.slice(2).reduce(compare)[c$][0]);
         } else {
             output.rank = 1;
-            output.ix = n0.concat(n1, n2, vcArr[3][c$]);
+            output.ix = n0.concat(n1, vcArr[2][c$], vcArr[3][c$]);
         }
     } else {
         output.rank = 0;
